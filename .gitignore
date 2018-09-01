@@ -1,0 +1,6 @@
+
+# data files
+/data/*
+
+# image files
+/imgs/*
