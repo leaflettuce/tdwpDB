@@ -2,5 +2,5 @@
 # data files
 /data/*
 
-# image files
-/imgs/*
+# imgs for reports
+/reports/figures/*
