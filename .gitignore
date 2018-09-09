@@ -1,7 +1,7 @@
 
 # data files
-/data/*
 *.csv
+*.xlsx
 
 # imgs for reports
 /reports/figures/*
