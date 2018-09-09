@@ -8,7 +8,7 @@
 3 - More accurately predict merchandise sales for tour budgeting.
 ```
 
-## Overall Process
+## Process
  
 ```
 1 - Collect data (internal, scrapers, etc.)
