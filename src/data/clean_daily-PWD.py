@@ -5,13 +5,6 @@ Created on Mon Sep 10 07:54:01 2018
 @author: andyj
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Sep  9 16:03:37 2018
-
-@author: andyj
-"""
-
 import pandas as pd
 import xlrd
 import os
