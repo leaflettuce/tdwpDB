@@ -192,5 +192,5 @@ for filename in os.listdir(data_dir):
     
 '''WRITE DF TO CSV'''  
 upload_dir = '../../data/interim/daily/'
-upload_file = 'nsnm-daily'
+upload_file = 'NSNM-daily'
 df.to_csv(upload_dir + upload_file + '.csv')

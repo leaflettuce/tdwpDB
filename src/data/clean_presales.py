@@ -21,10 +21,10 @@ for filename in os.listdir(data_dir):
     
     try:
         df = df.drop(['On Sale', 'Wrap'], axis = 1)
-    except KeyError:
+    except (KeyError, ValueError):
         pass
     
-    if 'parkway' in filename:
+    if 'ten' in filename:
         df = df.drop(df.iloc[:, 3:5], axis=1)
     
     df = df.drop(df.iloc[:, 8:], axis=1)

@@ -109,5 +109,5 @@ for filename in os.listdir(data_dir):
     
 '''WRITE DF TO CSV'''  
 upload_dir = '../../data/interim/daily/'
-upload_file = 'pwd-daily'
-df.to_csv(upload_dir + upload_file + '.csv')
+upload_file = 'parkway-daily'
+df.to_csv(upload_dir + upload_file + '.csv', encoding='utf8')

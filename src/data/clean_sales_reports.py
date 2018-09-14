@@ -16,6 +16,7 @@ data_dir = '../../data/raw/sales_reports/'
 # iterate over all files in dir and run
 
 for filename in os.listdir(data_dir):
+    print(filename)
     data_file = filename
 
     df = pd.read_csv(data_dir + data_file, skiprows = 1)
@@ -54,7 +55,7 @@ for filename in os.listdir(data_dir):
        
     
     # RENAME STUPID NAMED COLS
-    df = df.rename({'Unit % of Total':'Percent by Type', 'Avg. Price':'Avg Price', '$ % of Total':'Percent of Total'}, axis=1)
+    df = df.rename({'Unit % of Total':'Percent by Type', 'Avg. Price':'Avg Price', '$ % of Total':'Percent of Total'})
     
     #percent of total
     df['Precent of Total'] = ((df['Gross Rev'] / df['Gross Rev'].sum()) *100).round(2)

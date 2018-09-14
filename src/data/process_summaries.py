@@ -23,6 +23,7 @@ presale_beginning_test = 1
 
 # iterate over all files in dir and run
 for filename in os.listdir(data_dir):
+    print(filename)
     data_file = filename
     df = pd.read_csv(data_dir + data_file)
     
@@ -90,6 +91,8 @@ for filename in os.listdir(data_dir):
         beginning_test = 0
     else:
         final_df = pd.concat([final_df, new_df], ignore_index=True)
+
+final_df = final_df[final_df['Date'] != 'TOTAL']
 
 # WRITE OUT
 upload_dir = '../../data/processed/sales/'

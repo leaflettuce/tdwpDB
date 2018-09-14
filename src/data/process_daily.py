@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Sep 14 08:53:47 2018
+Created on Fri Sep 14 16:50:43 2018
 
 @author: andyj
 """
+
 
 import pandas as pd
 import numpy as np
@@ -11,7 +12,7 @@ import os
 
 
 # import data
-data_dir = '../../data/interim/sales_reports/'
+data_dir = '../../data/interim/daily/'
 ex_data_dir = '../../data/raw/extra/'
 
 #import extraneous data files
@@ -35,13 +36,15 @@ def find_merch_info():
                 df['logo'][row] = merch_df['logo'][merch_row]
                 df['minimal'][row] = merch_df['minimal'][merch_row]
                 return
+            
 
 # iterate over all files in dir and run
 for filename in os.listdir(data_dir):
-    print(filename)
-    if filename != 'the.csv':
+        print(filename)
         data_file = filename
         df = pd.read_csv(data_dir + data_file)
+        df = df.drop(['Unnamed: 0'], axis = 1)
+        df = pd.melt(df, id_vars=['date', 'venue', 'location'], var_name='name')
         
         #init merch vars
         df['t_color'] = 'na'
@@ -57,7 +60,9 @@ for filename in os.listdir(data_dir):
         
         ''' ADD TOUR DETAILS'''
         # position in line up
-        search_name = filename[:filename.find('.')]
+        search_name = filename[:filename.find('-')]
+        if search_name == 'nsnm':
+            search_name = 'NSNM' 
         df['tour_name'] = search_name
         df['tour_type'] = tour_df[tour_df['name'] == search_name]['position'].iloc[0]
         # year
@@ -65,13 +70,11 @@ for filename in os.listdir(data_dir):
         # season
         df['season'] = tour_df[tour_df['name'] == search_name]['season'].iloc[0]
         
-        df = df.drop(['Unnamed: 0'], axis = 1)
-        
         
         '''ADD MERCH DETAILS'''
         df['search_terms'] = ''
         for row in range(len(df)):
-            df['search_terms'][row] = df['Name'][row].lower().split(' ')[0:2]
+            df['search_terms'][row] = df['name'][row].lower().split(' ')[0:2]
             find_merch_info()
  
     
@@ -86,8 +89,8 @@ for filename in os.listdir(data_dir):
         
 
 ''' WRITE OUT TO CSV '''
-upload_dir = '../../data/processed/stock/'
-upload_file = 'stock_1.0'
+upload_dir = '../../data/processed/design/'
+upload_file = 'design_1.0'
     
 #write
 final_df.to_csv(upload_dir + upload_file + '.csv')

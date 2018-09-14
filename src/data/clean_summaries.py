@@ -14,6 +14,7 @@ data_dir = '../../data/raw/tour_summaries/'
 
 # iterate over all files in dir and run
 for filename in os.listdir(data_dir):
+    print(filename)
     data_file = filename
     df = pd.read_csv(data_dir + data_file, skiprows = 4)
      
