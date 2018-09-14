@@ -26,11 +26,6 @@ for filename in os.listdir(data_dir):
     data_file = filename
     df = pd.read_csv(data_dir + data_file)
     
-    #iterate over presale and pull in if avail
-    for ps_filename in os.listdir(presale_data_dir):
-        if ps_filename == filename:
-            presale_df = pd.read_csv(presale_data_dir + ps_filename)
-            presale_df['city'] = 'void'
     '''
     #REMOVE THESE TWO 
     filename = 'NSNM.csv'
@@ -48,30 +43,40 @@ for filename in os.listdir(data_dir):
     # year
     df['year'] = tour_df[tour_df['name'] == search_name]['year'].iloc[0]
     # season
-    df['season'] = tour_df[tour_df['name'] == 'NSNM']['season'].iloc[0]
-    
+    df['season'] = tour_df[tour_df['name'] == search_name]['season'].iloc[0]
     
     ''' toss in presale'''
-    if ps_filename == filename:
-        # set city column
-        for i in range(len(presale_df)):
-            presale_df['city'].iloc[i] = presale_df['City/State'].iloc[i][:presale_df['City/State'].iloc[i].find(',')]
-        
-        # drop unnecessary
-        presale_df = presale_df.drop(['City/State', 'Date', 'Venue'], axis = 1)
-        # merge two df's
-        new_presale_df = pd.merge(df, presale_df,  how='left', left_on=['City'], right_on = ['city'], 
-                          right_index = False)
-        new_presale_df = new_presale_df.drop(['city'], axis = 1)
-        new_presale_df = new_presale_df.drop(['Unnamed: 0'], axis = 1)
-
-        new_presale_df = new_presale_df.fillna(np.ceil(new_presale_df.mean()))
-        
-        if presale_beginning_test == 1:
-            final_presale_df = new_presale_df
-            presale_beginning_test = 0
-        else:
-            final_presale_df = pd.concat([final_presale_df, new_presale_df], ignore_index=True)
+    #iterate over presale and pull in if avail
+    for ps_filename in os.listdir(presale_data_dir):
+        if ps_filename == filename:
+            presale_df = pd.read_csv(presale_data_dir + ps_filename)
+            presale_df['city'] = 'void'
+    
+        if ps_filename == filename:
+            print(filename)
+            # set city column
+            for i in range(len(presale_df)):
+                presale_df['city'].iloc[i] = presale_df['City/State'].iloc[i][:presale_df['City/State'].iloc[i].find(',')]
+            
+            # drop unnecessary
+            presale_df = presale_df.drop(['City/State', 'Date', 'Venue'], axis = 1)
+            # merge two df's
+            new_presale_df = pd.merge(df, presale_df,  how='left', left_on=['City'], right_on = ['city'], 
+                              right_index = False)
+            new_presale_df = new_presale_df.drop(['city'], axis = 1)
+            new_presale_df = new_presale_df.drop(['Unnamed: 0'], axis = 1)
+    
+            new_presale_df = new_presale_df.fillna(np.ceil(new_presale_df.mean()))
+            
+            if presale_beginning_test == 1:
+                final_presale_df = new_presale_df
+                presale_beginning_test = 0
+            else:
+                final_presale_df = pd.concat([final_presale_df, new_presale_df], ignore_index=True)
+                
+                final_presale_df = final_presale_df.drop(['Wrap', 'Cap.', 'Unsold', 'Sellable'], axis = 1)
+                final_presale_df['Days Out'] = final_presale_df['Days Out'].fillna(1)
+                final_presale_df['Open'] = final_presale_df['Open'].fillna(final_presale_df['Capacity'] - final_presale_df['Total Sold'])
         
     new_df = df
     new_df = new_df.drop(['Unnamed: 0'], axis = 1)
@@ -85,5 +90,12 @@ for filename in os.listdir(data_dir):
         beginning_test = 0
     else:
         final_df = pd.concat([final_df, new_df], ignore_index=True)
-        
+
+# WRITE OUT
+upload_dir = '../../data/processed/sales/'
+upload_file = 'sales_1.0'
+upload_ps_file = 'ps_sales_1.0'
     
+#write
+final_df.to_csv(upload_dir + upload_file + '.csv')
+final_presale_df.to_csv(upload_dir + upload_ps_file + '.csv')
