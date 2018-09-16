@@ -35,6 +35,7 @@ def find_merch_info():
                 df['elite'][row] = merch_df['elite'][merch_row]
                 df['logo'][row] = merch_df['logo'][merch_row]
                 df['minimal'][row] = merch_df['minimal'][merch_row]
+                df['merch_id'][row] = merch_df['id'][merch_row]
                 return
             
 
@@ -56,6 +57,7 @@ for filename in os.listdir(data_dir):
         df['elite'] = 0
         df['logo'] = 0
         df['minimal'] = 0
+        df['merch_id'] = 0
         
         
         ''' ADD TOUR DETAILS'''
@@ -69,7 +71,7 @@ for filename in os.listdir(data_dir):
         df['year'] = tour_df[tour_df['name'] == search_name]['year'].iloc[0]
         # season
         df['season'] = tour_df[tour_df['name'] == search_name]['season'].iloc[0]
-        
+        df['tour_id'] = tour_df[tour_df['name'] == search_name]['id'].iloc[0]
         
         '''ADD MERCH DETAILS'''
         df['search_terms'] = ''

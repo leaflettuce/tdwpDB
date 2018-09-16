@@ -45,6 +45,7 @@ for filename in os.listdir(data_dir):
     df['year'] = tour_df[tour_df['name'] == search_name]['year'].iloc[0]
     # season
     df['season'] = tour_df[tour_df['name'] == search_name]['season'].iloc[0]
+    df['tour_id'] = tour_df[tour_df['name'] == search_name]['id'].iloc[0]
     
     ''' toss in presale'''
     #iterate over presale and pull in if avail
