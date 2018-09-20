@@ -140,6 +140,7 @@ def presale_gen(df):
 add_month(df)
 add_region(df, states)
 add_day_of_week(df)
+clipper(df)
 
 pred_df = setup_pred(df)
 
@@ -147,6 +148,7 @@ pred_df = setup_pred(df)
 add_month(ps)
 add_region(ps, states)
 add_day_of_week(ps)    
+clipper(ps)
 
 pred_ps = setup_pred(ps)
 presale_gen(pred_ps)
