@@ -105,10 +105,11 @@ def add_region(df, states):
                     df.set_value(i, 'region', region)
                   
 # day of week
-def add_day_of_week(df) :
+def add_day_of_week(df, clip_front = True) :
     ''' Set datetime and add day of week var '''
     # 0 = monday, 6 = sunday
-    df['Date'] = df['Date'].str[2:]
+    if clip_front == True:
+        df['Date'] = df['Date'].str[2:]
     df['Date'] = pd.to_datetime(df['Date'], format="%m/%d/%Y")
     
     df['day_of_week'] = df['Date'].dt.dayofweek
