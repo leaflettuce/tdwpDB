@@ -8,7 +8,7 @@
 3 - More accurately predict merchandise sales for tour budgeting.
 ```
 
-## Process
+## Overall Process
  
 ```
 1 - Collect data (internal, scrapers, etc.)
@@ -17,4 +17,16 @@
 4 - EDA FTW
 5 - Explore models
 6 - Report findings and methods of implementation
+```
+
+## Loading Data
+```
+(1) upload new data files from atvenue into appropriate _data/raw/_ dirs.
+	|--> summaries from _report/tour summary_ 
+	|--> sales from _report/sales report_ 
+	|--> daily from _tours/shows/completed_
+
+(2) RUN src/data/**process_data.bat**
+
+(3) RUN src/features/**generate_features.bat**
 ```
