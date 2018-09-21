@@ -5,3 +5,6 @@
 
 # imgs for reports
 /reports/figures/*
+
+# tableau files
+*.twb

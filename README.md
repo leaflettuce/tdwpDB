@@ -25,6 +25,7 @@
 	|--> summaries from _report/tour summary_ 
 	|--> sales from _report/sales report_ 
 	|--> daily from _tours/shows/completed_
+		|--> (NOTE) New tours require creation of new 'daily' cleaner!
 
 (2) RUN src/data/**process_data.bat**
 
