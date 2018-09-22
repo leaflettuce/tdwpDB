@@ -46,5 +46,8 @@ pred_df = pred_df[['Name', 'Type', 'Sex', 'Size', 't_color', 'num_print_colors',
 ''' WRITE OUT TO CSV's '''
 upload_dir = '../../data/processed/stock/'
 
+df.index.name = 'id'
+pred_df.index.name = 'id'
+
 df.to_csv(upload_dir + 'stock_2.0' + '.csv')
 pred_df.to_csv(upload_dir + 'stock_3.0' + '.csv')

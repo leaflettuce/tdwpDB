@@ -6,6 +6,7 @@ Created on Thu Sep 20 13:04:58 2018
 """
 
 import pandas as pd
+import numpy as np
 from generate_sales_features import add_region, add_day_of_week, states
 
 # import data
@@ -14,6 +15,10 @@ file_name = 'design_1.0.csv'
 
 df = pd.read_csv(data_dir + file_name)
 
+
+''' minor cleanup '''
+df['num_print_colors'] = np.where(df['num_print_colors']=='na', 0, df['num_print_colors'])
+df = df[df['name'] != 'day_total']
 
 ''' Generate Feature calls'''
 # MONTH
@@ -61,6 +66,9 @@ pred_df = pred_df[['name', 'tour_name', 'tour_type', 'venue', 'State', 'city', '
 
 ''' WRITE OUT TO CSV's '''
 upload_dir = '../../data/processed/design/'
+
+df.index.name = 'id'
+pred_df.index.name = 'id'
 
 df.to_csv(upload_dir + 'design_2.0' + '.csv')
 pred_df.to_csv(upload_dir + 'design_3.0' + '.csv')

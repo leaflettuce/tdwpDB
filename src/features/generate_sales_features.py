@@ -171,6 +171,9 @@ pred_ps = pred_ps[['State', 'tour_type', 'year', 'month', 'season', 'region',
 ''' WRITE OUT TO CSV's '''
 upload_dir = '../../data/processed/sales/'
 
+df.index.name = 'id'
+pred_df.index.name = 'id'
+
 df.to_csv(upload_dir + 'sales_2.0' + '.csv')
 ps.to_csv(upload_dir + 'ps_sales_2.0' + '.csv')
 
