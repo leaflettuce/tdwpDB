@@ -8,3 +8,6 @@
 
 # tableau files
 *.twb
+
+# allow data dictionaries
+!data_dictionary.csv
