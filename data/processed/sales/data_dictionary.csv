@@ -1,1 +1,29 @@
-field name,data type,PK,FK,description
+field name,data_type,var_type,description
+id,int,nominal,unique identifier
+date,datetime,interval,date of show
+location,str,categorical,"city, state, country of show"
+state,str,categorical,state of show
+city,str,categorical,city of show
+region,str,categorical,"region of show (N-north, W-west, S-south, E - east, C - canada)"
+zip,int,categorical,zip code
+year,int,categorical,year of show
+month,int,categorical,month of show
+day_of_week,int,categorical,"day of week of show (0 - Monday, 6 - sunday)"
+tour_id,int,nominal,unique identifier of tour
+tour_name,str,categorical,name of tour
+tour_type,str,categorical,type of tour for band (headline or support)
+season,str,categorical,"season of transaction (winter, spring, summer, fall)"
+venue,str,categorical,venue of show
+attend,int,ratio,number of attendees
+capacity,int,ratio,capacity of venue
+currency,str,categorical,currency used for show
+days out,int,ratio,days from show last presale was taken
+gross,int,ratio,gross sales of merch
+net receipts,int,ratio,net reciepts of merch
+open,int,ratio,number of open spots for presale
+per head,int,ratio,dollar sold per head 
+percent sold,int,ratio,percentage of venue capacity sold presale
+total sold,int,ratio,number of presale sold
+selling exp,int,ratio,venue fees
+tax,int,ratio,amount paid for taxes
+venue adjust,int ,ratio,dollar paid to venue

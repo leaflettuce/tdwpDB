@@ -1,1 +1,26 @@
-field name,data type,PK,FK,description
+field name,data_type,var_type,description
+id,int,nominal,unique identifier
+date,datetime,interval,date of show
+location,str,categorical,"city, state, country of show"
+state,str,categorical,state of show
+city,str,categorical,city of show
+region,str,categorical,"region of show (N-north, W-west, S-south, E - east, C - canada)"
+year,int,categorical,year of show
+month,int,categorical,month of show
+day_of_week,int,categorical,"day of week of show (0 - Monday, 6 - sunday)"
+tour_id,int,nominal,unique identifier of tour
+tour_name,str,categorical,name of tour
+tour_type,str,categorical,type of tour for band (headline or support)
+season,str,categorical,"season of transaction (winter, spring, summer, fall)"
+venue,str,categorical,venue of show
+name,str,categorical,name of merch design item
+merch_id,int,nominal,unique identifier of merch design
+t_color,str,categorical,color of shirt or item
+num_colors,int,ordinal,number of colors printed on shirt
+print_colors,array or str,categorical,colors printed on design
+elite,bool,categorical,Elite classification (premium design/expensive items)
+evil,bool,categorical,"is design evil (cult iconology, etc)"
+logo,bool,categorical,is tdwp logo on shirt? 
+lyrics,bool,categorical,does design display lyrics
+tour,bool,categorical,"tour specific design (dates, reference to tour name)"
+value,int,ratio,number sold for show

@@ -1,1 +1,27 @@
-field name,data type,PK,FK,description
+field name,data_type,var_type,description
+id,int,nominal,unique identifier
+tour_id,int,nominal,unique identifier of tour
+tour_name,str,categorical,name of tour
+tour_type,str,categorical,type of tour for band (headline or support)
+season,str,categorical,"season of transaction (winter, spring, summer, fall)"
+venue,str,categorical,venue of show
+name,str,categorical,name of merch design item
+merch_id,int,nominal,unique identifier of merch design
+t_color,str,categorical,color of shirt or item
+num_colors,int,ordinal,number of colors printed on shirt
+print_colors,array or str,categorical,colors printed on design
+elite,bool,categorical,Elite classification (premium design/expensive items)
+evil,bool,categorical,"is design evil (cult iconology, etc)"
+logo,bool,categorical,is tdwp logo on shirt? 
+lyrics,bool,categorical,does design display lyrics
+tour,bool,categorical,"tour specific design (dates, reference to tour name)"
+value,int,ratio,number sold for show
+percent_design,float,ratio,percentage of size accounting for total design sales
+avg price,float,ratio,average price of design throughout tour
+comp,int,ratio,number of times this design was given away for free
+gross rev,int,ratio,total profit generated from size/design combo
+percent tour,float,ratio,percetnage of total tour income generates by this design/size combo
+sex,char,categorical,"sex design is made for (m-male, f-female, u-unisex)"
+size,str,categorical,size of shirt (xs to 2xl)
+type,str,categorical,"type of design (shirt, jogger, hoodie, flag, etc)"
+unit % of total,float,ratio,percentage of size accounting for total design sales
