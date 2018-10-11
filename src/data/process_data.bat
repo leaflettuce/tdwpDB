@@ -20,10 +20,6 @@ python clean_sales_reports.py
 echo Aggregating Sales Reports together into stock/1.0..
 python -W ignore process_sales_reports.py
 
-echo ----------------------
-echo Cleaning PWD Dailies..
-echo !-- edit bat file to clean older dailies --!
-python clean_daily-PWD.py
 
 echo ----------------------
 echo Cleaning WRAABB Dailies..
