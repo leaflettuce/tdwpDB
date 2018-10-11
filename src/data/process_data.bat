@@ -25,6 +25,11 @@ echo Cleaning PWD Dailies..
 echo !-- edit bat file to clean older dailies --!
 python clean_daily-PWD.py
 
+echo ----------------------
+echo Cleaning WRAABB Dailies..
+echo !-- edit bat file to clean older dailies --!
+python clean_daily-WRAABB.py
+
 echo Aggregating dailies together into design/1.0..
 python -W ignore process_daily.py
 
