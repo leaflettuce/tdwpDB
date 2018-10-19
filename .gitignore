@@ -8,8 +8,10 @@
 *.png
 
 # tableau files
+/reports/dashboards/*
 *.twb
 *.twbr
+
 
 # allow data dictionaries
 !data_dictionary.csv
