@@ -5,9 +5,11 @@
 
 # imgs for reports
 /reports/figures/*
+*.png
 
 # tableau files
 *.twb
+*.twbr
 
 # allow data dictionaries
 !data_dictionary.csv
