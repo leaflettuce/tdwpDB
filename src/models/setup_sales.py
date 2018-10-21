@@ -14,7 +14,12 @@ df = pd.read_csv(data_dir + 'sales_3.0.csv')
 
 df = df.drop(['id'], axis =1)
 
-# set train, test, and validation
+##################################
+### SET UP TEST AND TRAIN ########
+##################################
+# Validation set is PArkway and first two weeks WRAABB
+
+# test set is last two weeks WRAABB
 
 X = df.iloc[:,0:8]
 Y_attend = df['RESULT_ATTEND']

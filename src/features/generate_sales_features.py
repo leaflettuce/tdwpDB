@@ -123,7 +123,7 @@ def clipper(df):
 # Drop unusable in prediciton
 def setup_pred(df):
     pred_df = df.drop(['Zip', 'Date', 'Venue', 'Currency', 'Tax', 'Venue Adjust.',
-                       'Selling Exp', 'Net Receipts', 'tour_name', 'tour_id'], axis = 1)
+                       'Selling Exp', 'Net Receipts', 'tour_id'], axis = 1)
     
     pred_df = pred_df.rename(columns={'Attend': 'RESULT_ATTEND', 'Per Head': 'RESULT_PER_HEAD',
                                       'Gross' : 'RESULT_GROSS'})
@@ -158,10 +158,10 @@ pred_ps = pred_ps.drop(['City'], axis = 1)
 
 
 ''' Organize cols '''
-pred_df = pred_df[['City', 'State', 'tour_type', 'year', 'month', 'season', 'region', 
+pred_df = pred_df[['City', 'State', 'tour_type', 'tour_name', 'year', 'month', 'season', 'region', 
                    'day_of_week', 'Capacity', 'RESULT_ATTEND', 'RESULT_PER_HEAD', 'RESULT_GROSS']]
 
-pred_ps = pred_ps[['State', 'tour_type', 'year', 'month', 'season', 'region', 
+pred_ps = pred_ps[['State', 'tour_type', 'tour_name', 'year', 'month', 'season', 'region', 
                    'day_of_week', 'Capacity', 'Days Out', 'Total Sold', 'Open', 
                    'Percent Sold', 'days_ps_cross', 'RESULT_ATTEND', 'RESULT_PER_HEAD', 'RESULT_GROSS']]
 
