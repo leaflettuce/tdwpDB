@@ -36,7 +36,7 @@ df = df.drop(['id'], axis =1)
 # tweak 
 df = df.drop(['City', 'State', 'season'], axis =1)
 pca_comps = 5
-cont_drops = ['month', 'year', 'day_of_week']
+cont_drops = ['month', 'day_of_week']
 
 ######################################
 # CLEAN AND ORGANIZE VARIABLES #######
@@ -76,7 +76,7 @@ df_pca = pd.DataFrame(df_pca, index=df_pca[:,0])
 df_encoded = pd.DataFrame(df_encoded, index=df_encoded[:,0])
 
 # pca explained   - 76%
-print(pca.explained_variance_ratio_.sum())
+print("PCA explained variance: %2f" %(pca.explained_variance_ratio_.sum()))
 
 #standardize continuous data
 scaler = StandardScaler()
@@ -151,15 +151,15 @@ reg.fit(X_train, Y_gross_train)
 
 Y_gross_val_pred = reg.predict(X_val)
 
-
+'''
 ####### RIDGE #############
 reg = Ridge(alpha = .5)
 reg.fit(X_train, Y_gross_train)
 
 Y_gross_val_pred = reg.predict(X_val)
 
-'''
 
+'''
 ###### SVR ################
 svr = SVR()
 # gridsearch
@@ -174,6 +174,7 @@ cv_results['test_score']
 
 #predict 
 Y_gross_val_pred = reg.predict(X_val)
+'''
 
 ########################################
 ####### MODEL RESULTS (GROSS) ###########
@@ -183,7 +184,7 @@ Y_gross_val_pred = reg.predict(X_val)
 print("Mean squared error: %.2f"
       % mean_squared_error(Y_gross_val, Y_gross_val_pred))
 
-print("Average error per node: %2f"
+print("Root MSE: %2f"
       % math.sqrt(mean_squared_error(Y_gross_val, Y_gross_val_pred)))
 
 # Explained variance score: 1 is perfect prediction
@@ -206,9 +207,9 @@ for i in range(0, 7):
                 (Y_pred[i] - Y_gross_test[i + 350])))
     
     
-#################################################
-## NOTES FOR NEW DATA PIPELINE
-#################################################
+################################
+##  NEW DATA PIPELINE
+###############################
 
 '''
 PIPELINE
@@ -232,6 +233,9 @@ PIPELINE
         
 -run chosen model on this X to get Y
 '''
+
+
+
 
 
 
