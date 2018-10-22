@@ -76,7 +76,7 @@ for filename in os.listdir(data_dir):
             else:
                 final_presale_df = pd.concat([final_presale_df, new_presale_df], ignore_index=True)
                 
-                final_presale_df = final_presale_df.drop(['Wrap', 'Cap.', 'Unsold', 'Sellable'], axis = 1)
+                final_presale_df = final_presale_df.drop(['Sellable'], axis = 1)
                 final_presale_df['Days Out'] = final_presale_df['Days Out'].fillna(1)
                 final_presale_df['Open'] = final_presale_df['Open'].fillna(final_presale_df['Capacity'] - final_presale_df['Total Sold'])
         
