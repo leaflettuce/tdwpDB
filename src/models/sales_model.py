@@ -232,6 +232,8 @@ PIPELINE
         # THIS IS X to predict
         
 -run chosen model on this X to get Y
+
+-PRINT OUR into CSV
 '''
 
 

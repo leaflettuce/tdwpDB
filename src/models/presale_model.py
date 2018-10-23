@@ -40,7 +40,7 @@ df.iloc[:,:-1] = scaler.fit_transform(df.iloc[:,:-1])
 #test train split
 X_train, X_test, y_train, y_test = train_test_split(df.iloc[:,:-1], 
                                                     df['RESULT_GROSS'], 
-                                                    test_size=0.12, random_state=42)
+                                                    test_size=0.15, random_state=42)
 
 
 #Fit models!
@@ -87,3 +87,18 @@ print('Variance score: %.2f'
 # Residual plot
 sns.set(style="whitegrid")
 sns.residplot(y_test, y_pred)
+
+
+################################
+##  NEW DATA PIPELINE
+###############################
+
+'''
+PIPELINE
+
+-only use [cap, days out, total sold, precent sold, days_ps_xcross]
+- Transform with scaler
+-run reg predict
+-PRINT OUT to CSV
+'''
+
