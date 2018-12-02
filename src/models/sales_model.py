@@ -52,7 +52,7 @@ df = df.drop(['tour_name'], axis = 1)
 
 # encode categorical w/ label sparse matrix
 d = defaultdict(LabelEncoder)
-df.iloc[:,:-4] = df.apply(lambda x: d[x.name].fit_transform(x))
+df.iloc[:,:-4] = df.iloc[:,:-4].apply(lambda x: d[x.name].fit_transform(x))
 
 # add numeric back in then one hot
 df_cont = df_cont.drop(cont_drops, axis = 1)
@@ -210,6 +210,36 @@ for i in range(0, 7):
 ################################
 ##  NEW DATA PIPELINE
 ###############################
+
+
+df_pred = pd.read_csv('../../data/processed/upcoming/leg2_overview.csv')
+
+df_pred.iloc[:,:-2] = df_pred.iloc[:,:-2].apply(lambda x: d[x.name].transform(x))
+
+df_pred = df_pred[['year', 'tour_type', 'region', 'capacity']]
+
+df_pred_enc = oh_enc.transform(df_pred.iloc[:,:-1]).toarray()
+df_pred_cap = df_pred.iloc[:,-1:]
+
+df_pred_pca = pca.transform(df_pred_enc)
+
+df_pred_pca = pd.DataFrame(df_pred_pca, index=df_pred_pca[:,0])
+df_pred_enc = pd.DataFrame(df_pred_enc, index=df_pred_enc[:,0])
+
+df_pred_cap['result'] = 1
+df_pred_cap = scaler.transform(df_pred_cap)
+df_pred_cap = pd.DataFrame(df_pred_cap, index=df_pred_cap[:,0])
+
+# glue back together (pca & encoded)
+df_pred_pca = df_pred_pca.reset_index(drop=True)
+df_pred_enc = df_pred_enc.reset_index(drop=True)
+
+df_pred_p = pd.concat([df_pred_pca, df], axis = 1, sort = False)
+df_pred_e = pd.concat([df_pred_enc, df], axis = 1, sort = False)
+
+df_pred = df_pred_p.iloc[:19,:]
+
+results = reg.predict(df_pred)
 
 '''
 PIPELINE
