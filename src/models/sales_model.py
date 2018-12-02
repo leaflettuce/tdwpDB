@@ -229,18 +229,22 @@ df_pred_enc = pd.DataFrame(df_pred_enc, index=df_pred_enc[:,0])
 df_pred_cap['result'] = 1
 df_pred_cap = scaler.transform(df_pred_cap)
 df_pred_cap = pd.DataFrame(df_pred_cap, index=df_pred_cap[:,0])
+df_pred_cap = df_pred_cap.drop([1], axis = 1)
+df_pred_cap = df_pred_cap.reset_index()
 
 # glue back together (pca & encoded)
 df_pred_pca = df_pred_pca.reset_index(drop=True)
 df_pred_enc = df_pred_enc.reset_index(drop=True)
 
-df_pred_p = pd.concat([df_pred_pca, df], axis = 1, sort = False)
-df_pred_e = pd.concat([df_pred_enc, df], axis = 1, sort = False)
+df_pred_p = pd.concat([df_pred_pca, df_pred_cap], axis = 1, sort = False)
+df_pred_e = pd.concat([df_pred_enc, df_pred_cap], axis = 1, sort = False)
 
-df_pred = df_pred_p.iloc[:19,:]
+df_pred = df_pred_p.iloc[:,:]
+df_pred = df_pred.drop(['index'], axis = 1)
 
 results = reg.predict(df_pred)
 
+np.savetxt("../../data/predictions/leg2_sale.csv", results, delimiter=",")
 '''
 PIPELINE
 
