@@ -9,6 +9,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import math
 import seaborn as sns
+import numpy as np
 
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import cross_validate
@@ -93,6 +94,13 @@ sns.residplot(y_test, y_pred)
 ##  NEW DATA PIPELINE
 ###############################
 
+df_pred = pd.read_csv('../../data/processed/upcoming/leg2_cleaned.csv')
+
+df_pred = scaler.transform(df_pred)
+
+results = reg.predict(df_pred)
+
+np.savetxt("../../data/predictions/leg2_presale.csv", results, delimiter=",")
 '''
 PIPELINE
 
